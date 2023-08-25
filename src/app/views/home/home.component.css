@@ -1,0 +1,11 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+nav {
+    border-bottom: 1px #86868651 solid;
+}
+
+
+* {
+    border: 0;
+    padding: 0;
+}

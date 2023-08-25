@@ -1,0 +1,14 @@
+<nav class="ps-5 pe-5 pt-4 pb-4 d-flex justify-content-between align-items-center">
+    <h1 class="text-dark">WebNews</h1>
+    <div class="d-flex justify-content-around" *ngIf="!isLogged else logged">
+        <app-button [inputTexto]="'Iniciar Sesión'" [inputTipo]="'outline'" [inputRuta]="'login'"></app-button>
+        <app-button [inputTexto]="'Registrarse'" [inputTipo]="'fill'" [inputRuta]="'register'"></app-button>
+    </div>
+    <ng-template #logged>
+        <div class="d-flex justify-content-around align-items-center">
+            <p class="m-3"> <b> Sesión actual: </b> {{authService.getDataToken(token)['usuario']['nick']}} </p>
+            <a class="btn btn-outline-warning" (click)="logOut()">Cerrar sesión</a>
+        </div>
+
+    </ng-template>
+</nav>

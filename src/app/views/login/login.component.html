@@ -1,0 +1,30 @@
+<div class="container w-50 mt-5 h-100">
+    <h1>WebNews Login</h1>
+    <br>
+    <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+
+        <label for="correo">Correo</label>
+        <input class="form-control" type="email" id="correo" name="correo" [(ngModel)]="dataForm.correo"
+            #correo="ngModel" required>
+        <div *ngIf="correo.invalid && (correo.dirty || correo.touched)">
+            <label class="text-error" *ngIf="correo.errors && correo.errors['required']" class="error">Este campo es
+                requerido.</label>
+        </div>
+
+        <br>
+
+        <label for="contraseña">Contraseña</label>
+        <input type="password" class="form-control" id="contraseña" name="contraseña" [(ngModel)]="dataForm.contrasenia"
+            #contrasenia="ngModel" required minlength="8">
+        <div *ngIf="contrasenia.invalid && (contrasenia.dirty || contrasenia.touched)">
+            <label class="text-error" *ngIf="contrasenia.errors && contrasenia.errors['required']" class="error">Este
+                campo es requerido.</label>
+            <label class="text-error" *ngIf="contrasenia.errors && contrasenia.errors['minlength']" class="error">Este
+                campo requiere 8 caracteres
+                mínimo.</label>
+        </div>
+
+        <br>
+        <button class="btn btn-warning" type="submit" [disabled]="loginForm.invalid">Iniciar Sesión</button>
+    </form>
+</div>

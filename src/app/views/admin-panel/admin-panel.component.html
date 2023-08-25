@@ -1,0 +1,41 @@
+<app-navbar-admin></app-navbar-admin>
+<div class="container mt-5">
+    <div class="d-flex justify-content-end">
+        <a class="btn btn-outline-warning" (click)="openDialog('create')">+ Nueva noticia</a>
+    </div>
+    <div class="table-responsive mt-3">
+        <table class="table table-responsive table-hover table-bordered">
+            <thead>
+                <tr class="">
+                    <th scope="col" class="center-item-table">#</th>
+                    <th scope="col" class="center-item-table">Ttiulo</th>
+                    <th scope="col" class="center-item-table">Categoría</th>
+                    <th scope="col" class="center-item-table">Usuario</th>
+                    <th scope="col" class="center-item-table">Fecha publicada</th>
+                    <th class="center-item-table">Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let row of news">
+
+                    <td class="center-item-table">{{row.id}}</td>
+                    <td class="center-item-table">{{row.titulo}}</td>
+                    <td class="center-item-table">{{row.categoria?.nombre}}</td>
+                    <td class="center-item-table">{{row.usuario?.nombre}}</td>
+                    <td class="center-item-table">{{row.fecha_publicacion.slice(0,10)}}</td>
+                    <td class="center-item-table">
+                        <div class="d-flex justify-content-evenly">
+                            <a class="btn btn-outline-success" title="Editar" (click)="openDialog('edit', row)">
+                                Editar
+                            </a>
+                            <a class="btn btn-outline-danger" title="Eliminar" (click)="delete(row.id)">
+                                Eliminar
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+<div class="container w-50 mt-5 h-100">
+    <h1>WebNews Registro</h1>
+    <br>
+    <form #registerForm="ngForm" (ngSubmit)="onSubmit()">
+
+
+        <label for="nombre">Nombre</label>
+        <input class="form-control"  id="nombre" name="nombre" [(ngModel)]="dataForm.nombre"
+            #nombre="ngModel" required>
+        <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+            <label class="text-error" *ngIf="nombre.errors && nombre.errors['required']" class="error">Este campo es
+                requerido.</label>
+        </div>
+        <br> 
+        <label for="apellidos">Apellidos</label>
+        <input class="form-control"  id="apellidos" name="apellidos" [(ngModel)]="dataForm.apellidos"
+            #apellidos="ngModel" required>
+        <div *ngIf="apellidos.invalid && (apellidos.dirty || apellidos.touched)">
+            <label class="text-error" *ngIf="apellidos.errors && apellidos.errors['required']" class="error">Este campo es
+                requerido.</label>
+        </div>
+        <br>
+        <label for="nick">Nick</label>
+        <input class="form-control"  id="nick" name="nick" [(ngModel)]="dataForm.nick"
+            #nick="ngModel" required>
+        <div *ngIf="nick.invalid && (nick.dirty || nick.touched)">
+            <label class="text-error" *ngIf="nick.errors && nick.errors['required']" class="error">Este campo es
+                requerido.</label>
+        </div>
+        <br>
+
+        <label for="correo">Correo</label>
+        <input class="form-control" type="email" id="correo" name="correo" [(ngModel)]="dataForm.correo"
+            #correo="ngModel" required>
+        <div *ngIf="correo.invalid && (correo.dirty || correo.touched)">
+            <label class="text-error" *ngIf="correo.errors && correo.errors['required']" class="error">Este campo es
+                requerido.</label>
+        </div>
+
+
+        <br>
+
+        <label for="contraseña">Contraseña</label>
+        <input type="password" class="form-control" id="contraseña" name="contraseña" [(ngModel)]="dataForm.contrasenia"
+            #contrasenia="ngModel" required minlength="8">
+        <div *ngIf="contrasenia.invalid && (contrasenia.dirty || contrasenia.touched)">
+            <label class="text-error" *ngIf="contrasenia.errors && contrasenia.errors['required']" class="error">Este
+                campo es requerido.</label>
+            <label class="text-error" *ngIf="contrasenia.errors && contrasenia.errors['minlength']" class="error">Este
+                campo requiere 8 caracteres
+                mínimo.</label>
+        </div>
+
+        <br>
+        <button class="btn btn-warning" type="submit" [disabled]="registerForm.invalid">Registrarse</button>
+    </form>
+</div>

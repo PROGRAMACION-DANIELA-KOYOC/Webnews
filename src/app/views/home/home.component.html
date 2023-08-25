@@ -1,0 +1,10 @@
+<app-navbar></app-navbar>
+<div class="container mt-5 pt-5 ">
+    <h4>Nuestras noticias</h4>
+    <div class="row">
+        <app-card-new class="col-lg-4" *ngFor="let noticia of news" (click)="openDialog(noticia)" style="cursor: pointer;"
+            [inputTitulo]="noticia.titulo" [inputDescripcion]="noticia.descripcion"
+            [inputCategoria]="noticia.categoria?.nombre" [inputFecha]="noticia.fecha_publicacion.slice(0,10)"
+            [inputImagen]="noticia.imagen"></app-card-new>
+    </div>
+</div>

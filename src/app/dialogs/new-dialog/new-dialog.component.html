@@ -1,0 +1,20 @@
+<h4 mat-dialog-title class="bg-light border-bottom">
+    {{data.titulo}}
+</h4>
+
+
+<div mat-dialog-content class="p-0">
+    <img [src]="data.imagen" class="img-fluid">
+    <div class="p-5">
+        <p class="text-warning text-end"> <b> {{data.fecha_publicacion.slice(0,10) }} </b> </p>
+        <h4 class="text-muted fs-4">{{data.categoria?.nombre}}</h4>
+        <p class="fs-5">{{data.descripcion}}</p>
+        <p> <b> Autor: </b> {{data.usuario?.nombre}}</p>
+    </div>
+
+
+</div>
+
+<div mat-dialog-actions class="p-0 m-0" style="min-height: 0px;">
+    <button (click)="closeDialog()" class="w-100 p-2 btn btn-light">Cerrar</button>
+</div>

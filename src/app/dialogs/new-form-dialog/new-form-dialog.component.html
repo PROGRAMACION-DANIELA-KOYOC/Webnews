@@ -1,0 +1,124 @@
+<h4 mat-dialog-title class="bg-light border-bottom" *ngIf="data.type == 'create'"> Creando una nueva noticia</h4>
+<h4 mat-dialog-title class="bg-light border-bottom" *ngIf="data.type == 'edit'"> Editando noticia: {{data.model.id}}
+</h4>
+
+
+<form #newForm="ngForm" (ngSubmit)="onSubmit()">
+
+    <div mat-dialog-content>
+        <label for="correo">Titulo</label>
+        <input class="form-control" type="text" id="titulo" name="titulo" [(ngModel)]="data.model.titulo"
+            #titulo="ngModel" required maxlength="50">
+        <div *ngIf="titulo.invalid && (titulo.dirty || titulo.touched)">
+            <label class="text-error" *ngIf="titulo.errors && titulo.errors['required']" class="error">Este campo es
+                requerido.</label>
+            <label class="text-error" *ngIf="titulo.errors && titulo.errors['maxlength']" class="error">Este campo
+                acepta máximo 50 caractéres</label>
+        </div>
+
+        <br>
+
+
+        <label for="correo">Categoría</label>
+        <select class="form-select" id="categoria_id" name="categoria_id" [(ngModel)]="data.model.categoria_id"
+            #categoria_id="ngModel" required>
+            <option *ngFor="let category of categories" [value]="category.id">{{category.nombre}}</option>
+        </select>
+        <div *ngIf="categoria_id.invalid && (categoria_id.dirty || categoria_id.touched)">
+            <label class="text-error" *ngIf="categoria_id.errors && categoria_id.errors['required']" class="error">Este
+                campo es
+                requerido.</label>
+        </div>
+
+        <br>
+
+
+        <label for="correo">Usuario</label>
+        <select class="form-select" id="usuario_id" name="usuario_id" [(ngModel)]="data.model.usuario_id"
+            #usuario_id="ngModel" required>
+            <option *ngFor="let user of users" [value]="user.id">{{user.nombre + ' ' + user.apellidos }}
+                ({{user.nick}})
+            </option>
+        </select>
+        <div *ngIf="usuario_id.invalid && (usuario_id.dirty || usuario_id.touched)">
+            <label class="text-error" *ngIf="usuario_id.errors && usuario_id.errors['required']" class="error">Este
+                campo es requerido.</label>
+        </div>
+
+        <br>
+
+
+        <label for="correo">Estado</label>
+        <select class="form-select" id="estado_id" name="estado_id" [(ngModel)]="data.model.estado_id"
+            #estado_id="ngModel" required>
+            <option *ngFor="let state of states" [value]="state.id"> {{state.nombre}} </option>
+        </select>
+        <div *ngIf="estado_id.invalid && (estado_id.dirty || estado_id.touched)">
+            <label class="text-error" *ngIf="estado_id.errors && estado_id.errors['required']" class="error">Este
+                campo
+                es requerido.</label>
+        </div>
+
+        <br>
+
+
+
+        <label for="correo">Descripción</label>
+        <textarea class="form-control" style="height: 150px;" id="descripcion" name="descripcion"
+            [(ngModel)]="data.model.descripcion" #descripcion="ngModel" required maxlength="1000"></textarea>
+        <div *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)">
+            <label class="text-error" *ngIf="descripcion.errors && descripcion.errors['required']" class="error">Este
+                campo es
+                requerido.</label>
+            <label class="text-error" *ngIf="descripcion.errors && descripcion.errors['maxlength']" class="error">Este
+                campo
+                acepta máximo 1000 caractéres</label>
+        </div>
+
+
+        <br>
+
+        <label for="correo">Fecha de publicación</label>
+        <input class="form-control" type="date" id="fecha_publicacion" name="fecha_publicacion"
+            [(ngModel)]="data.model.fecha_publicacion" #fecha_publicacion="ngModel" required>
+        <div *ngIf="fecha_publicacion.invalid && (fecha_publicacion.dirty || fecha_publicacion.touched)">
+            <label class="text-error" *ngIf="fecha_publicacion.errors && fecha_publicacion.errors['required']"
+                class="error">Este campo es
+                requerido.</label>
+        </div>
+
+        <br>
+
+        <label for="correo">Activo</label>
+        <select class="form-select" id="activo" name="activo" [(ngModel)]="data.model.activo" #activo="ngModel"
+            required>
+            <option [value]="true">Sí</option>
+            <option [value]="false">No</option>
+        </select>
+        <div *ngIf="activo.invalid && (activo.dirty || activo.touched)">
+            <label class="text-error" *ngIf="activo.errors && activo.errors['required']" class="error">Este campo es
+                requerido.</label>
+        </div>
+
+        <br>
+
+
+        <label for="correo">Imagen</label>
+        <input class="form-control" type="file" accept=".png,.jpg,.jpge" id="imagen" name="imagen"
+            [(ngModel)]="data.model.imagen" (change)="onFileSelected($event)" required>
+        <div class="card p-2">
+            <p class="text-muted">Previsualización</p>
+            <div class="card-body">
+                <img src="{{data.model.imagen}}" class="img-fluid">
+            </div>
+        </div>
+
+        <br>
+    </div>
+
+
+    <div mat-dialog-actions>
+        <button class="btn btn-outline-warning w-100" type="submit"
+            [disabled]="newForm.invalid && !data.model.imagen">Guardar</button>
+    </div>
+</form>
